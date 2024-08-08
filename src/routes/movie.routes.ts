@@ -1,10 +1,13 @@
 import { Router } from "express";
-import { getMovies } from "../controllers/movieController";
+import { getMovies, getMovie } from "../controllers/movieController";
 const router = Router();
 
 router.get("/getMovies", (req, res) => {
-  getMovies();
-  res.send("Peliculas cargadas");
+  getMovies(req, res);
+});
+
+router.get("/getMovie", (req, res) => {
+  getMovie(req, res);
 });
 
 export default router;

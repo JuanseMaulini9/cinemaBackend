@@ -1,5 +1,6 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
+import "../src/utils/cron";
 
 import databaseConnect from "./database/databaseConnect";
 
