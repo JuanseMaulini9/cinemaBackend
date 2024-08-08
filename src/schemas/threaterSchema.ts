@@ -1,5 +1,5 @@
 import { Document, Schema, model } from "mongoose";
-import { SeatsType, TheaterType } from "../types/types";
+import { SeatsType, ThreaterType } from "../types/types";
 
 interface SeatsDocument extends Document, SeatsType {}
 
@@ -12,7 +12,7 @@ const seatsSchema = new Schema<SeatsDocument>({
   },
 });
 
-interface TheaterDocument extends Document, TheaterType {}
+interface TheaterDocument extends Document, ThreaterType {}
 
 const threaterSchema = new Schema<TheaterDocument>({
   movie: {

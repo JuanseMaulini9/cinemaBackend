@@ -5,7 +5,7 @@ export type SeatsType = {
   state: "libre" | "ocupado" | "reservado";
 };
 
-export type TheaterType = {
+export type ThreaterType = {
   movie: Types.ObjectId;
   showtime: Date;
   seats: SeatsType[];
