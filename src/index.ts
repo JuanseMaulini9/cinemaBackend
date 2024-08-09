@@ -7,11 +7,14 @@ import databaseConnect from "./database/databaseConnect";
 import movieRoutes from "./routes/movie.routes";
 import threaterRoutes from "./routes/threater.routes";
 
+import cors from "cors";
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
 app.use(json());
+app.use(cors());
 
 app.use("/movies", movieRoutes);
 app.use("/threater", threaterRoutes);
