@@ -6,6 +6,7 @@ import databaseConnect from "./database/databaseConnect";
 
 import movieRoutes from "./routes/movie.routes";
 import threaterRoutes from "./routes/threater.routes";
+import genresRoutes from "./routes/genres.routes";
 
 import cors from "cors";
 
@@ -18,6 +19,7 @@ app.use(cors());
 
 app.use("/movies", movieRoutes);
 app.use("/threater", threaterRoutes);
+app.use("/genres", genresRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server Escuchando en puerto: ${PORT}`);
