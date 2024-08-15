@@ -33,9 +33,23 @@ export async function postThreater(req: Request, res: Response) {
 
     const newThreater = new threaterSchema({
       movie: movieId,
-      showtime: showtime,
+      showtime: new Date(showtime),
       seats: seats,
     });
+
+    const showTimeDate = new Date(showtime);
+    const now = new Date();
+    const difference = showTimeDate.getTime() - now.getTime();
+
+    if (difference > 0) {
+      setTimeout(async () => {
+        try {
+          await threaterSchema.findByIdAndDelete(newThreater._id);
+        } catch (error) {
+          console.log(error);
+        }
+      }, difference);
+    }
 
     const result = await newThreater.save();
     if (result) {
