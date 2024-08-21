@@ -72,14 +72,24 @@ export async function deleteThreaterById(req: Request, res: Response) {
 
 export async function editThreater(req: Request, res: Response) {
   const { threaterId, seats, showtime, movie } = req.body;
+
+  const depuringSeats: SeatsType[] = seats.map((seat: SeatsType) => {
+    if (seat.state === "reservado") {
+      return { ...seat, state: "ocupado" };
+    }
+    return seat;
+  });
+
   try {
     const editedThreater = await threaterSchema.findByIdAndUpdate(threaterId, {
       movie,
       showtime,
-      seats,
+      seats: depuringSeats,
     });
     if (editedThreater) {
-      res.status(200).json({ message: "sala editada exitosamente" });
+      res
+        .status(200)
+        .json({ message: "sala editada exitosamente", seats: depuringSeats });
     }
   } catch (error) {}
 }
