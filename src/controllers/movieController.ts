@@ -12,7 +12,7 @@ export async function getMovies(req: Request, res: Response) {
 }
 
 export async function getMovie(req: Request, res: Response) {
-  const { movieId } = req.body;
+  const { movieId } = req.params;
   try {
     const movie = await movieSchema.findById(movieId);
     res.status(200).json(movie);

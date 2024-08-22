@@ -9,6 +9,7 @@ import threaterRoutes from "./routes/threater.routes";
 import genresRoutes from "./routes/genres.routes";
 
 import cors from "cors";
+import resetMovies from "./utils/resetMovies";
 
 dotenv.config();
 const app = express();
@@ -21,7 +22,12 @@ app.use("/movies", movieRoutes);
 app.use("/threater", threaterRoutes);
 app.use("/genres", genresRoutes);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server Escuchando en puerto: ${PORT}`);
-  databaseConnect();
+  try {
+    await databaseConnect();
+    resetMovies();
+  } catch (error) {
+    console.log(error);
+  }
 });
